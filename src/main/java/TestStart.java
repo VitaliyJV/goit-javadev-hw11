@@ -1,26 +1,35 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import Entity.Client;
+import Entity.Planet;
+import Service.ClientCrudService;
+import Service.HibernateUtil;
+import Service.PlanetCrudService;
+import org.flywaydb.core.Flyway;
 
-import java.sql.*;
+import java.util.Optional;
 
 public class TestStart {
     public static void main(String[] args) {
-        String dbUrl = "jdbc:h2:./goit-javadev-hw10";
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(dbUrl);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            Statement stmt = conn.createStatement();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
+        final String url = "jdbc:h2:./goit-javadev-hw10";
+        final String user = "";
+        final String password = "";
+
+        Flyway flyway = Flyway.configure().dataSource(url, user, password).load();
+        flyway.migrate();
+
+//        ClientCrudService clientCrudService = new ClientCrudService();
+//        PlanetCrudService planetCrudService = new PlanetCrudService();
+//
+//        Client newClient = Client.builder().name("New client").build();
+//        clientCrudService.create(newClient);
+//        System.out.println(clientCrudService.get(11L));
+
+
+
 
     }
+
+
 }
 
 

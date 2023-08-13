@@ -1,19 +1,24 @@
 package Entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 
 public class Planet {
 
-    @Enumerated(EnumType.STRING)
     @Id
-    private Enum id;
+    private String id;
 
-    @Column(name = "name", length = 500)
+    @Column(name = "name")
     private String name;
 
 
