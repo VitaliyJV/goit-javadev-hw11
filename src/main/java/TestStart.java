@@ -17,20 +17,14 @@ public class TestStart {
         Flyway flyway = Flyway.configure().dataSource(url, user, password).load();
         flyway.migrate();
 
-//        ClientCrudService clientCrudService = new ClientCrudService();
-//        PlanetCrudService planetCrudService = new PlanetCrudService();
-//
-//        Client newClient = Client.builder().name("New client").build();
-//        clientCrudService.create(newClient);
-//        System.out.println(clientCrudService.get(11L));
-
-
-
-
+        ClientCrudService clientCrudService = new ClientCrudService();
+        PlanetCrudService planetCrudService = new PlanetCrudService();
+        
+        HibernateUtil.getInstance().close();
     }
-
-
 }
+
+
 
 
 
