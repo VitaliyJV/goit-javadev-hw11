@@ -32,6 +32,7 @@ public class ClientCrudService {
         }
     }
 
+
     public void update(Client client) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();

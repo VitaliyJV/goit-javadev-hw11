@@ -19,6 +19,7 @@ public class Ticket {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @Column(name = "id")
     private long id;
 
     @Column(name = "created_at")
