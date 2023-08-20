@@ -33,9 +33,12 @@ public class TestStart {
         flyway.migrate();
 
         ClientCrudService clientCrudService = new ClientCrudService();
-        PlanetCrudService planetCrudService = new PlanetCrudService();
         TicketCrudService ticketCrudService = new TicketCrudService();
 
+        System.out.println(ticketCrudService.get(1L));
+        Ticket ticket = ticketCrudService.get(1L).orElseThrow();
+        ticket.setClient(clientCrudService.get(7L).orElseThrow());
+        ticketCrudService.update(ticket);
         System.out.println(ticketCrudService.get(1L));
 
         HibernateUtil.getInstance().close();
