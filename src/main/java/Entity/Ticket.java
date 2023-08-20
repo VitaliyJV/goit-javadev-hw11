@@ -9,40 +9,28 @@ import lombok.NoArgsConstructor;
 import java.time.ZonedDateTime;
 
 @Entity
-@Table
+@Table(name = "ticket")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
 public class Ticket {
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
+    @Column(name = "createdAt")
+    private ZonedDateTime createdAt;
 
-    @Column(name = "created_at")
-    private ZonedDateTime created_at;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "clientId")
+    private Client client;
 
-    @Column(name = "client_id")
-    private long client_id;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "fromPlanetId")
+    private Planet fromPlanet;
 
-    @Column(name = "from_planet_id")
-    private String from_planet_id;
-
-    @Column(name = "to_planet_id")
-    private String to_planet_id;
-
-
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "toPlanetId")
+    private Planet toPlanet;
 
 }
-
-/*
-Ticket (квиток). Має наступні властивості:
-id - ідентифікатор квитка, первинний сурогатний ключ, автоінкрементне число.
-created_at - TIMESTAMP в UTC, коли був створений цей квиток
-client_id - ідентифікатор клієнта, якому належить цей квиток.
-from_planet_id - ідентифікатор планети, звідки відправляється пасажир
-to_planet_id - ідентифікатор планети, куди летить пасажир
- */

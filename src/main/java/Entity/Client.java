@@ -1,33 +1,31 @@
 package Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Entity
-@Table(name = "client")
+import java.util.List;
+
 @Data
+@Entity
+@Builder
+@Table(name = "client")
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@ToString(exclude= "tickets")
 public class Client {
-
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Id
-        @Column(name = "id")
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private long id;
 
         @Column(name = "name")
         private String name;
+
+        @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+        private List<Ticket> tickets;
+
+        public List<Ticket> getTickets() {
+                return tickets;
+        }
 }
 
 
-
-
-/*
-Client (клієнт) - клієнт компанії. Має наступні властивості:
-id - ідентифікатор, первинний сурогатний ключ, автоінкрементне число.
-name - ім'я, від 3 до 200 символів включно
- */

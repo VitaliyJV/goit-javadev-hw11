@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class ClientCrudService {
-
     private final SessionFactory sessionFactory = HibernateUtil.getInstance().getSessionFactory();
 
     public void create(Client client) {
@@ -32,7 +31,6 @@ public class ClientCrudService {
         }
     }
 
-
     public void update(Client client) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -46,15 +44,17 @@ public class ClientCrudService {
         }
     }
 
-    public void delete(Client client) {
+    public void delete(Long clientId) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             try {
-                Query query = session.createQuery("SELECT t FROM Ticket t WHERE t.client = :id");
-                query.setParameter("id", client.getId() );
-                query.list().forEach(session::remove);
-                session.remove(client);
-                transaction.commit();
+                Client client = session.get(Client.class, clientId);
+                if (client != null) {
+                    session.delete(client);
+                    transaction.commit();
+                } else {
+                    throw new IllegalArgumentException("Client not found");
+                }
             } catch (Exception e) {
                 transaction.rollback();
                 throw e;
@@ -67,8 +67,5 @@ public class ClientCrudService {
             return session.createQuery("FROM entity.Client", Client.class).list();
         }
     }
-
-
-
-
 }
+
