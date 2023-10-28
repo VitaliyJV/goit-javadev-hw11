@@ -1,16 +1,12 @@
-import Entity.Client;
-import Entity.Ticket;
-import Service.ClientCrudService;
-import Service.HibernateUtil;
-import Service.PlanetCrudService;
-import Service.TicketCrudService;
+import entity.Ticket;
+import service.ClientCrudService;
+import service.HibernateUtil;
+import service.TicketCrudService;
 import org.flywaydb.core.Flyway;
-import org.hibernate.cfg.Configuration;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Properties;
 
 public class TestStart {

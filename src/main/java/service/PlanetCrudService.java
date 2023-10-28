@@ -1,6 +1,6 @@
-package Service;
+package service;
 
-import Entity.Planet;
+import entity.Planet;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

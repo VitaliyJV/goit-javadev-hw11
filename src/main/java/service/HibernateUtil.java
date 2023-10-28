@@ -1,8 +1,8 @@
-package Service;
+package service;
 
-import Entity.Client;
-import Entity.Planet;
-import Entity.Ticket;
+import entity.Client;
+import entity.Planet;
+import entity.Ticket;
 import lombok.Getter;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

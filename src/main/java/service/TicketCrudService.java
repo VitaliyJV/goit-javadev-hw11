@@ -1,6 +1,6 @@
-package Service;
+package service;
 
-import Entity.Ticket;
+import entity.Ticket;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
@@ -20,7 +20,6 @@ public class TicketCrudService {
             return Optional.ofNullable(session.get(Ticket.class, id));
         }
     }
-
 
     public List<Ticket> getAll() {
         try (Session session = sessionFactory.openSession()) {
